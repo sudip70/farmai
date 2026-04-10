@@ -5,6 +5,7 @@ import { fetchDiseaseDetails }        from './diseaseDetails.js';
 import { drawOriginal, drawEdges, drawDensity } from './visualize.js';
 
 // ── DOM refs ─────────────────────────────────────────────────────────────────
+const pageTabs      = document.getElementById('page-tabs');
 const dropZone      = document.getElementById('drop-zone');
 const fileInput     = document.getElementById('file-input');
 const selectedFile  = document.getElementById('selected-file');
@@ -52,6 +53,12 @@ loadModel((state, message) => {
 });
 
 // ── Drag & drop ──────────────────────────────────────────────────────────────
+pageTabs.addEventListener('click', e => {
+  const tab = e.target.closest('.page-tab');
+  if (!tab) return;
+  setPageTab(tab.dataset.page);
+});
+
 dropZone.addEventListener('dragover', e => {
   e.preventDefault();
   dropZone.classList.add('over');
@@ -81,6 +88,7 @@ btnReset.addEventListener('click', () => {
   resetUpload();
   confFill.style.width     = '0%';
   setActiveTab('original');
+  setPageTab('analyzer');
 });
 
 // ── Viz tabs ─────────────────────────────────────────────────────────────────
@@ -96,6 +104,15 @@ function setActiveTab(name) {
   });
   document.querySelectorAll('.viz-pane').forEach(p => {
     p.classList.toggle('active', p.id === `pane-${name}`);
+  });
+}
+
+function setPageTab(name) {
+  document.querySelectorAll('.page-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.page === name);
+  });
+  document.querySelectorAll('.page-pane').forEach(p => {
+    p.classList.toggle('active', p.id === `page-${name}`);
   });
 }
 
@@ -125,6 +142,7 @@ function syncUploadControls() {
 // ── Main handler ─────────────────────────────────────────────────────────────
 async function handleFile(file) {
   if (isAnalyzing) return;
+  setPageTab('analyzer');
 
   if (modelState === 'loading') {
     alert('The model is still loading. Please wait a moment and try again.');
@@ -206,6 +224,7 @@ function renderDiseaseDetails({ name, overview, symptoms, control }) {
 }
 
 function renderUiErrorState() {
+  setPageTab('analyzer');
   renderPrediction('Wrong image uploaded', 0, { lowConfidence: true });
   renderDiseaseDetails({
     name: 'Please upload a leaf image',

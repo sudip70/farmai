@@ -38,15 +38,14 @@
     <span class="badge">MangoLeafBD · EfficientNetB0</span>
   </header>
 
-  <!-- ── Hero ── -->
   <section class="hero">
-    <p class="hero-label">Plant Disease Detection</p>
-    <h1>Identify mango<br>leaf disease <em>instantly.</em></h1>
+    <p class="hero-label">AI Crop Health Decision Support</p>
+    <h1>FarmAI — AI-powered crop health prediction and decision support system</h1>
+    <p class="hero-subcopy">Helping farmers make data-driven decisions using machine learning.</p>
     <p>Upload a photo of a mango leaf and the model classifies it across 8 disease
-       categories — running entirely in your browser.</p>
+       categories in the browser, giving fast visual diagnosis support without a backend.</p>
   </section>
 
-  <!-- ── Steps ── -->
   <div class="steps">
     <div class="step">
       <div class="step-num">01</div>
@@ -65,49 +64,167 @@
     </div>
   </div>
 
-  <!-- ── Upload zone ── -->
-  <section class="upload-section" id="upload-section">
-    <div id="drop-zone">
-      <input type="file" id="file-input" accept="image/jpeg,image/png,image/jpg" />
-      <div class="drop-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-      </div>
-      <h3>Drop an image here</h3>
-      <p>or click to browse &nbsp;·&nbsp; JPG, PNG supported</p>
-    </div>
+  <div class="page-tabs" id="page-tabs">
+    <button class="page-tab active" data-page="analyzer" type="button">Analyzer</button>
+    <button class="page-tab" data-page="overview" type="button">Overview</button>
+    <button class="page-tab" data-page="model" type="button">Model</button>
+  </div>
 
-    <div class="upload-actions">
-      <p class="selected-file" id="selected-file">No image selected</p>
-      <div class="upload-buttons">
-        <button class="btn-action btn-analyze" id="btn-analyze" type="button" disabled>Analyze Image</button>
-        <button class="btn-action btn-clear" id="btn-clear-upload" type="button" disabled>Clear</button>
+  <section class="page-pane" id="page-overview">
+    <section class="info-section">
+      <div class="section-head">
+        <p class="hero-label">Problem → Solution → Impact</p>
+        <h2>Why this system matters</h2>
       </div>
-    </div>
+      <div class="info-grid info-grid-3">
+        <div class="info-card">
+          <h3>Problem</h3>
+          <p>Farmers face uncertainty from disease pressure, environmental shifts, and delayed field inspection, which can lead to weak planning and avoidable crop loss.</p>
+        </div>
+        <div class="info-card">
+          <h3>Solution</h3>
+          <p>A machine learning image classifier analyzes mango leaf symptoms and predicts the most likely disease class from the uploaded image.</p>
+        </div>
+        <div class="info-card">
+          <h3>Impact</h3>
+          <ul class="info-list">
+            <li>Better planning</li>
+            <li>Reduced risk</li>
+            <li>Improved efficiency</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    <div id="model-status">
-      <div class="dot loading" id="status-dot"></div>
-      <span id="status-text">Loading browser model…</span>
-    </div>
+    <section class="info-section">
+      <div class="section-head">
+        <p class="hero-label">Use Cases</p>
+        <h2>Where it helps</h2>
+      </div>
+      <div class="info-grid info-grid-3">
+        <div class="info-card">
+          <h3>Crop health screening</h3>
+          <p>Quickly check whether a mango leaf shows signs of a known disease class.</p>
+        </div>
+        <div class="info-card">
+          <h3>Risk analysis</h3>
+          <p>Use early image-based classification as an input to field monitoring and disease management decisions.</p>
+        </div>
+        <div class="info-card">
+          <h3>Treatment planning</h3>
+          <p>Support faster escalation from observation to action by narrowing the likely disease type.</p>
+        </div>
+      </div>
+    </section>
   </section>
 
-  <!-- ── Spinner ── -->
-  <div class="spinner" id="spinner"></div>
+  <section class="page-pane" id="page-model">
+    <section class="info-section">
+      <div class="section-head">
+        <p class="hero-label">Model Intelligence</p>
+        <h2>What powers the prediction</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Model used</h3>
+          <p>EfficientNetB0 convolutional neural network exported to TensorFlow.js for browser inference.</p>
+        </div>
+        <div class="info-card">
+          <h3>Features learned</h3>
+          <p>Leaf color distribution, lesion edges, surface texture, shape irregularities, and disease pattern contrast.</p>
+        </div>
+        <div class="info-card">
+          <h3>Dataset source</h3>
+          <p>Mango leaf disease image dataset with 8 classes, prepared locally in this project for retraining and export.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- ── Results ── -->
-  <section id="results">
+    <section class="info-section metrics-section">
+      <div class="section-head">
+        <p class="hero-label">Metrics</p>
+        <h2>Engineering snapshot</h2>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-box">
+          <span class="metric-value">4,000</span>
+          <span class="metric-text">leaf images in the local dataset</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-value">8</span>
+          <span class="metric-text">supported disease classes</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-value">224×224</span>
+          <span class="metric-text">image resolution used for inference</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-value">85–95%</span>
+          <span class="metric-text">target accuracy range after retraining, depending on split and checkpoint</span>
+        </div>
+      </div>
+    </section>
 
-    <button class="btn-reset" id="btn-reset">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 18 9 12 15 6"/>
-      </svg>
-      Analyse another image
-    </button>
+    <section class="info-section">
+      <div class="section-head">
+        <p class="hero-label">Architecture</p>
+        <h2>System flow</h2>
+      </div>
+      <div class="architecture-flow">
+        <div class="flow-node">User Input</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">Data Processing</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">ML Model</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">Prediction</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">UI</div>
+      </div>
+    </section>
+  </section>
+
+  <section class="page-pane active" id="page-analyzer">
+    <section class="upload-section" id="upload-section">
+      <div id="drop-zone">
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/jpg" />
+        <div class="drop-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <h3>Drop an image here</h3>
+        <p>or click to browse &nbsp;·&nbsp; JPG, PNG supported</p>
+      </div>
+
+      <div class="upload-actions">
+        <p class="selected-file" id="selected-file">No image selected</p>
+        <div class="upload-buttons">
+          <button class="btn-action btn-analyze" id="btn-analyze" type="button" disabled>Analyze Image</button>
+          <button class="btn-action btn-clear" id="btn-clear-upload" type="button" disabled>Clear</button>
+        </div>
+      </div>
+
+      <div id="model-status">
+        <div class="dot loading" id="status-dot"></div>
+        <span id="status-text">Loading browser model…</span>
+      </div>
+    </section>
+
+    <div class="spinner" id="spinner"></div>
+
+    <section id="results">
+
+      <button class="btn-reset" id="btn-reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Analyse another image
+      </button>
 
     <!-- Prediction row -->
     <div class="results-grid">
@@ -191,7 +308,8 @@
       </div>
     </div>
 
-  </section><!-- /results -->
+    </section>
+  </section>
 
   <!-- ── Footer ── -->
   <footer>
