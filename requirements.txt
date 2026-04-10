@@ -1,5 +1,5 @@
-numpy
-pandas
-seaborn
-tensorflow
-firebase_admin
+tensorflow==2.19.0
+tf-keras==2.19.0
+protobuf==5.29.6
+tensorflow-metal==1.2.0; platform_system == "Darwin" and platform_machine == "arm64"
+tensorflowjs==4.22.0

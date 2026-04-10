@@ -1,0 +1,21 @@
+{
+  "class_labels": [
+    "Anthracnose",
+    "Bacterial Canker",
+    "Cutting Weevil",
+    "Die Back",
+    "Gall Midge",
+    "Healthy",
+    "Powdery Mildew",
+    "Sooty Mould"
+  ],
+  "image_size": [
+    224,
+    224
+  ],
+  "low_confidence_threshold": 30,
+  "preprocessing": "efficientnet_rgb_mean_std",
+  "source_model": "/Users/sudipshrestha/Projects-website/FarmAI/FarmAI/Development/artifacts/mango_leaf_disease.keras",
+  "model_dir": "/Users/sudipshrestha/Projects-website/FarmAI/FarmAI/model",
+  "exported_at_utc": "2026-04-10T00:09:15.296237+00:00"
+}
