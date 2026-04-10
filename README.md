@@ -2,6 +2,12 @@
 
 FarmAI is a static mango leaf disease classifier that runs entirely in the browser with TensorFlow.js, so it can be deployed to GitHub Pages without Flask, Streamlit, Firebase, or any other backend.
 
+**Demo:** 
+<p align="center">
+  <img src="farmai_demo.gif" width="600"/>
+</p>
+---
+
 ## Repo layout
 
 - `index.html`, `css/`, `js/`: the static website
