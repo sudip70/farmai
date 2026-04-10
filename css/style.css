@@ -158,7 +158,7 @@ header {
 
 .hero h1 {
   font-family: 'Syne', sans-serif;
-  font-weight: 800;
+  font-weight: 850;
   font-size: clamp(36px, 6vw, 58px);
   line-height: 1.08;
   letter-spacing: -1.5px;
@@ -167,9 +167,16 @@ header {
   margin-bottom: 22px;
 }
 
-.hero h1 em {
-  font-style: normal;
-  color: var(--accent);
+
+.hero h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 3vw, 24px);
+  line-height: 1.08;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  max-width: 540px;
+  margin-bottom: 28px;
 }
 
 .hero p {
@@ -180,10 +187,12 @@ header {
 }
 
 .hero-subcopy {
-  color: var(--text);
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 10px;
+   color: var(--accent-hi);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  max-width: 420px;
+  margin-bottom: 14px;
 }
 
 /* ── Steps ── */
