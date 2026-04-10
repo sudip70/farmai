@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmAI - Mango Leaf Disease Detection</title>
+
+  <!-- TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 19c0-7.1 5.6-11.4 14-11.4 0 8.9-4.6 15.7-11.9 15.7-1.4 0-2.1-.7-2.1-4.3Z"/>
+          <path d="M10.3 22.5c2.2-4.8 5.7-8.6 11.4-12.1"/>
+          <path d="M16 14.6h6"/>
+          <path d="M19 11.8v5.6"/>
+          <circle cx="22.6" cy="14.6" r="1.15" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <span class="logo-name">Farm<span>AI</span></span>
+    </div>
+    <span class="badge">MangoLeafBD · EfficientNetB0</span>
+  </header>
+
+  <section class="hero">
+    <p class="hero-label">AI Crop Health Decision Support</p>
+    <h1>FarmAI</h1>
+    <h2>AI-powered crop health prediction and decision support system.</h2>
+    <p class="hero-subcopy">Helping farmers make data-driven decisions using machine learning.</p>
+    <p>Upload a photo of a mango leaf and the model classifies it across 8 disease
+       categories in the browser, giving fast visual diagnosis support without a backend.</p>
+  </section>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Upload a leaf image</h4>
+      <p>Drag and drop or select a JPG/PNG photo of the mango leaf you want to analyse.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Instant classification</h4>
+      <p>EfficientNetB0 runs client-side in your browser — no server, no upload delays.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Explore the results</h4>
+      <p>See the prediction, confidence, disease details, and visual analysis of the leaf.</p>
+    </div>
+  </div>
+
+  <div class="page-tabs" id="page-tabs">
+    <button class="page-tab active" data-page="analyzer" type="button">Analyzer</button>
+    <button class="page-tab" data-page="overview" type="button">Overview</button>
+    <button class="page-tab" data-page="model" type="button">Model</button>
+  </div>
+
+  <section class="page-pane" id="page-overview">
+    <section class="info-section">
+      <div class="section-head">
+        <p class="hero-label">Problem → Solution → Impact</p>
+        <h2>Why this system matters</h2>
+      </div>
+      <div class="info-grid info-grid-3">
+        <div class="info-card">
+          <h3>Problem</h3>
+          <p>Farmers face uncertainty from disease pressure, environmental shifts, and delayed field inspection, which can lead to weak planning and avoidable crop loss.</p>
+        </div>
+        <div class="info-card">
+          <h3>Solution</h3>
+          <p>A machine learning image classifier analyzes mango leaf symptoms and predicts the most likely disease class from the uploaded image.</p>
+        </div>
+        <div class="info-card">
+          <h3>Impact</h3>
+          <ul class="info-list">
+            <li>Better planning</li>
+            <li>Reduced risk</li>
+            <li>Improved efficiency</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="section-head">
+        <p class="hero-label">Use Cases</p>
+        <h2>Where it helps</h2>
+      </div>
+      <div class="info-grid info-grid-3">
+        <div class="info-card">
+          <h3>Crop health screening</h3>
+          <p>Quickly check whether a mango leaf shows signs of a known disease class.</p>
+        </div>
+        <div class="info-card">
+          <h3>Risk analysis</h3>
+          <p>Use early image-based classification as an input to field monitoring and disease management decisions.</p>
+        </div>
+        <div class="info-card">
+          <h3>Treatment planning</h3>
+          <p>Support faster escalation from observation to action by narrowing the likely disease type.</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="page-pane" id="page-model">
+    <section class="info-section">
+      <div class="section-head">
+        <p class="hero-label">Model Intelligence</p>
+        <h2>What powers the prediction</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Model used</h3>
+          <p>EfficientNetB0 convolutional neural network exported to TensorFlow.js for browser inference.</p>
+        </div>
+        <div class="info-card">
+          <h3>Features learned</h3>
+          <p>Leaf color distribution, lesion edges, surface texture, shape irregularities, and disease pattern contrast.</p>
+        </div>
+        <div class="info-card">
+          <h3>Dataset source</h3>
+          <p>Mango leaf disease image dataset with 8 classes, prepared locally in this project for retraining and export.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section metrics-section">
+      <div class="section-head">
+        <p class="hero-label">Metrics</p>
+        <h2>Engineering snapshot</h2>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-box">
+          <span class="metric-value">4,000</span>
+          <span class="metric-text">leaf images in the local dataset</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-value">8</span>
+          <span class="metric-text">supported disease classes</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-value">224×224</span>
+          <span class="metric-text">image resolution used for inference</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-value">85–95%</span>
+          <span class="metric-text">target accuracy range after retraining, depending on split and checkpoint</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="section-head">
+        <p class="hero-label">Architecture</p>
+        <h2>System flow</h2>
+      </div>
+      <div class="architecture-flow">
+        <div class="flow-node">User Input</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">Data Processing</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">ML Model</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">Prediction</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">UI</div>
+      </div>
+    </section>
+  </section>
+
+  <section class="page-pane active" id="page-analyzer">
+    <section class="upload-section" id="upload-section">
+      <div id="drop-zone">
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/jpg" />
+        <div class="drop-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <h3>Drop an image here</h3>
+        <p>or click to browse &nbsp;·&nbsp; JPG, PNG supported</p>
+      </div>
+
+      <div class="upload-actions">
+        <p class="selected-file" id="selected-file">No image selected</p>
+        <div class="upload-buttons">
+          <button class="btn-action btn-analyze" id="btn-analyze" type="button" disabled>Analyze Image</button>
+          <button class="btn-action btn-clear" id="btn-clear-upload" type="button" disabled>Clear</button>
+        </div>
+      </div>
+
+      <div id="model-status">
+        <div class="dot loading" id="status-dot"></div>
+        <span id="status-text">Loading browser model…</span>
+      </div>
+    </section>
+
+    <div class="spinner" id="spinner"></div>
+
+    <section id="results">
+
+      <button class="btn-reset" id="btn-reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Analyse another image
+      </button>
+
+    <!-- Prediction row -->
+    <div class="results-grid">
+
+      <!-- Preview + prediction card -->
+      <div class="card">
+        <img id="preview-img" class="card-img" src="" alt="Uploaded leaf" />
+        <div class="card-body">
+          <p class="prediction-label">Detected Condition</p>
+          <p class="prediction-name" id="pred-name">—</p>
+
+          <div class="conf-row">
+            <span>Confidence</span>
+            <span id="conf-pct">—</span>
+          </div>
+          <div class="conf-track">
+            <div class="conf-fill" id="conf-fill"></div>
+          </div>
+
+          <div class="low-conf-msg" id="low-conf-msg">
+            Confidence is low — the model couldn't classify this image reliably.
+            Try uploading a clearer, well-lit photo of the leaf.
+          </div>
+        </div>
+      </div>
+
+      <!-- Disease detail card -->
+      <div class="detail-card">
+        <h2 id="detail-title">Disease Details</h2>
+        <div class="divider"></div>
+
+        <div class="detail-section">
+          <p class="detail-section-label">Overview</p>
+          <p id="detail-overview">Loading…</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-section-label">Symptoms</p>
+          <p id="detail-symptoms">Loading…</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-section-label">Control</p>
+          <p id="detail-control">Loading…</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Visual Analysis ── -->
+    <div class="viz-panel" id="viz-panel">
+      <div class="viz-header">
+        <p class="viz-title">Visual Analysis</p>
+        <div class="viz-tabs" id="viz-tabs">
+          <button class="viz-tab active" data-tab="original">Original</button>
+          <button class="viz-tab"        data-tab="edges">Edge Detection</button>
+          <button class="viz-tab"        data-tab="density">Pixel Density</button>
+        </div>
+      </div>
+
+      <div class="viz-body">
+        <!-- Original -->
+        <div class="viz-pane active" id="pane-original">
+          <canvas id="canvas-original"></canvas>
+        </div>
+
+        <!-- Edge detection -->
+        <div class="viz-pane" id="pane-edges">
+          <canvas id="canvas-edges"></canvas>
+          <p class="viz-caption">
+            Sobel edge detection highlights structural boundaries — veins, lesion edges,
+            and texture transitions that the model uses as discriminating features.
+          </p>
+        </div>
+
+        <!-- Pixel density / RGB histogram -->
+        <div class="viz-pane" id="pane-density">
+          <canvas id="canvas-density"></canvas>
+          <p class="viz-caption">
+            RGB channel histogram. Healthy leaves skew heavily green; diseased leaves
+            often show elevated red or reduced green intensity.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    </section>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <span class="footer-copy">&copy; 2026 Sudip Shrestha &middot; Mississauga, ON, Canada</span>
+    <div class="footer-links">
+      <a class="footer-icon-link" href="mailto:sudipshrestha.ca@gmail.com" aria-label="Email Sudip Shrestha">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+          <path d="M4 7l8 6 8-6"></path>
+        </svg>
+      </a>
+      <a class="footer-icon-link" href="https://sudip70.github.io" target="_blank" rel="noreferrer" aria-label="Sudip Shrestha portfolio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18"></path>
+          <path d="M12 3a15 15 0 0 1 0 18"></path>
+          <path d="M12 3a15 15 0 0 0 0 18"></path>
+        </svg>
+      </a>
+      <a class="footer-icon-link" href="https://github.com/sudip70" target="_blank" rel="noreferrer" aria-label="Sudip Shrestha GitHub profile">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.41 7.85 10.94.57.11.78-.25.78-.55 0-.27-.01-1.18-.02-2.14-3.19.69-3.86-1.35-3.86-1.35-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.69.08-.69 1.15.08 1.75 1.18 1.75 1.18 1.02 1.76 2.68 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.17 1.18a10.9 10.9 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.79.55a11.53 11.53 0 0 0 7.84-10.94C23.5 5.66 18.35.5 12 .5Z"></path>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
