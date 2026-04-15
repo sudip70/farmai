@@ -4,7 +4,7 @@ FarmAI is a static mango leaf disease classifier that runs entirely in the brows
 
 **Demo:** 
 <p align="center">
-  <img src="farmai_demo.gif" width="600"/>
+  <img src="farmai_demo.gif" width="100%"/>
 </p>
 ---
 
